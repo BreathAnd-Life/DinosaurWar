@@ -1,0 +1,35 @@
+public class PlayerControl : MonoBehaviour
+{
+	private Rigidbody rBody;
+	private Animation ani;
+
+	void Start()
+	{
+		ani = GetComponent<Animation> ();
+		rBody = GetComponent<Rigidbody> ();
+
+	}
+
+	void Update(){
+	
+		//垂直轴
+		float vertical = Input.GetAxis("Vertical");
+		//水平轴
+		float horizontal = Input.GetAxis("Horizontal");
+		//方向
+		Vector3 dir = new Vector3(horizontal,0,vertical);
+		if (dir != Vector3.zero) {
+			//改变方向
+			transform.rotation = Quaternion.LookRotation (dir);
+			//移动
+			rBody.velocity = dir * 3;
+			//移动奔跑运动动画（run为该动作名字）
+			ani.Play ("run");
+		}
+		else
+		{
+			//否则播放站立的默认动画
+			ani.Play ("idle");
+		}
+	}
+}
