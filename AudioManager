@@ -1,0 +1,17 @@
+public class AudioManager : MonoBehaviour
+{
+	public static AudioManager Instance;
+
+	void Awake(){
+	
+		Instance = this;
+	}
+
+	public void PlayBomb()
+	{
+		GetComponent<AudioSource> ().Play();
+	}
+}
+
+//然后在Bomb爆炸的脚本中播放爆炸声音
+//AudioManager.Instance.PlayBomb();
